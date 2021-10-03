@@ -1,8 +1,8 @@
-package javagame;
+package javagame.engine;
 
 import org.lwjgl.input.Keyboard;
 
-public class KeyboardGL {
+public class KeyboardInput {
 	
 	private static final int MAX_KEYS = 210;
 
@@ -12,10 +12,10 @@ public class KeyboardGL {
 	public static final int KEY_DOWN = 208;
 	public static final int KEY_SPACE = 57;
 	
-	private boolean[] currentKeys, downKeys, upKeys;
+	private boolean[] pressedKeys, downKeys, upKeys;
 	
-	public KeyboardGL() {
-		currentKeys = new boolean[MAX_KEYS];
+	public KeyboardInput() {
+		pressedKeys = new boolean[MAX_KEYS];
 		downKeys = new boolean[MAX_KEYS];
 		upKeys = new boolean[MAX_KEYS];
 	}
@@ -26,30 +26,31 @@ public class KeyboardGL {
 			upKeys[i] = false;
 		}
 		
-		while(kbNext()) {
-			if(getEventKeyDown() == true) {
-				downKeys[getEventKey()] = true;
-				currentKeys[getEventKey()] = true;
+		while(isKeyEvent()) {
+			int eventKey = getEventKey();
+			if (getEventKeyDown()) {
+				downKeys[eventKey] = true;
+				pressedKeys[eventKey] = true;
 			} else {
-				upKeys[getEventKey()] = true;
-				currentKeys[getEventKey()] = false;
+				upKeys[eventKey] = true;
+				pressedKeys[eventKey] = false;
 			}
 		}
 	}
 	
-	public boolean getCurrentKey(int keyCode) {
-		return currentKeys[keyCode];
-	}
-	
-	public boolean getDownKey(int keyCode) {
+	public boolean isKeyDown(int keyCode) {
 		return downKeys[keyCode];
 	}
 	
-	public boolean getUpKey(int keyCode) {
+	public boolean isKeyPressed(int keyCode) {
+		return pressedKeys[keyCode];
+	}
+	
+	public boolean isKeyUp(int keyCode) {
 		return upKeys[keyCode];
 	}
 	
-	private static boolean kbNext() {
+	private static boolean isKeyEvent() {
 		
 		return Keyboard.next();
 		

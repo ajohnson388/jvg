@@ -1,10 +1,10 @@
-package javagame;
+package javagame.engine;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-public class DisplayGL {
+public class Window {
 
 	private final int FPS = 60;
 	
@@ -12,7 +12,7 @@ public class DisplayGL {
 	
 	private int width, height;
 
-	public DisplayGL(String title, int width, int height) {
+	public Window(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
 		this.height = height;

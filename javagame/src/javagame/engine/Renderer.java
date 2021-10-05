@@ -88,23 +88,33 @@ public class Renderer {
 	}
 	
 	public void drawCircle(float x, float y, 
-						   float radius, 
-						   int triangleCount) {
+			   float radius, 
+			   int triangleCount) {
+		Triangle[] triangles = new Triangle[triangleCount];
+
 		float angleIncrement = 360f / Math.abs(triangleCount);
-		
-		for(float angle = 0f; angle < 360f; angle += angleIncrement) {
+
+		float angle = 0;
+
+		for(int i = 0; i < triangleCount; i++) {
 			float x1 = x;
 			float y1 = y;
-			
+
 			float x2 = (float) (radius * Math.cos(Math.toRadians(angle))) + x;
 			float y2 = (float) (radius * Math.sin(Math.toRadians(angle))) + y;
-			
-			float x3 = (float) (radius * Math.cos(Math.toRadians(angle + angleIncrement))) + x;;
-			float y3 = (float) (radius * Math.sin(Math.toRadians(angle + angleIncrement))) + y;;
-			
-			drawTriangle(x1, y1, x2, y2, x3, y3);
+
+			float x3 = (float) (radius * Math.cos(Math.toRadians(angle + angleIncrement))) + x;
+			float y3 = (float) (radius * Math.sin(Math.toRadians(angle + angleIncrement))) + y;
+
+			triangles[i] = new Triangle(x1, y1, x2, y2, x3, y3);
+
+			angle += angleIncrement;
 		}
-	}
+
+		for(Triangle t : triangles) {
+			drawTriangle(t.x1, t.y1, t.x2, t.y2, t.x3, t.y3);
+		}
+}
 	
 	public void drawGameObj(GameObject obj) {
 		Color3f color = obj.getColor();

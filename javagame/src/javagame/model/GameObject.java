@@ -20,6 +20,7 @@ public class GameObject implements Renderable {
 		vertices.add(new Vertex(0.5f, 0.5f));
 		vertices.add(new Vertex(0f, 0.8f));
 		vertices.add(new Vertex(-0.5f, 0.5f));
+		vertices.add(new Vertex(-0.5f, -0.5f));
 		return vertices;
 	}
 

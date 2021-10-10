@@ -1,4 +1,4 @@
-package javagame.engine;
+package javagame.application;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;

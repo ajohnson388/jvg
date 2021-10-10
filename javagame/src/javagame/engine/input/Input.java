@@ -1,8 +1,8 @@
-package javagame.engine;
+package javagame.engine.input;
 
 import org.lwjgl.input.Keyboard;
 
-public class KeyboardInput {
+public class Input implements InputType {
 	
 	private static final int MAX_KEYS = 210;
 
@@ -14,13 +14,13 @@ public class KeyboardInput {
 	
 	private boolean[] pressedKeys, downKeys, upKeys;
 	
-	public KeyboardInput() {
+	public Input() {
 		pressedKeys = new boolean[MAX_KEYS];
 		downKeys = new boolean[MAX_KEYS];
 		upKeys = new boolean[MAX_KEYS];
 	}
 	
-	public void detect() {
+	private void detect() {
 		for(int i = 0; i < MAX_KEYS; i++) {
 			downKeys[i] = false;
 			upKeys[i] = false;
@@ -38,16 +38,24 @@ public class KeyboardInput {
 		}
 	}
 	
+	@Override
 	public boolean isKeyDown(int keyCode) {
-		return downKeys[keyCode];
+		return foo(keyCode, downKeys);
 	}
 	
+	@Override
 	public boolean isKeyPressed(int keyCode) {
-		return pressedKeys[keyCode];
+		return foo(keyCode, pressedKeys);
 	}
 	
+	@Override
 	public boolean isKeyUp(int keyCode) {
-		return upKeys[keyCode];
+		return foo(keyCode, upKeys);
+	}
+
+	private boolean foo(int keyCode, boolean[] list) {
+		detect();
+		return list[keyCode];
 	}
 	
 	private static boolean isKeyEvent() {

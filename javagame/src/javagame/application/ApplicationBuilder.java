@@ -1,16 +1,19 @@
 package javagame.application;
 
-import javagame.engine.KeyboardInput;
-import javagame.engine.Renderer;
-import javagame.engine.Window;
+import javagame.engine.GameEngine;
+import javagame.engine.GameEngineType;
+import javagame.engine.input.Input;
+import javagame.engine.renderer.Renderer;
+import javagame.game.Game;
 
 public class ApplicationBuilder {
 
-	public Game buildGame() {
+	public ApplicationType build() {
+		Game game = new Game();
 		Window display = new Window("Java Game", 500, 500);
+		Input keyboard = new Input();
 		Renderer renderer = new Renderer();
-		KeyboardInput keyboard = new KeyboardInput();
-		return new Game(display, renderer, keyboard);
+		GameEngineType gameEngine = new GameEngine(game, keyboard, renderer);
+		return new Application(display, gameEngine);
 	}
-	
 }

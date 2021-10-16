@@ -8,11 +8,6 @@ import javagame.engine.renderer.Renderable;
 public class GameObject implements Renderable {
 
 	@Override
-	public List<Renderable> getRenderables() {
-		return new ArrayList<Renderable>();
-	}
-
-	@Override
 	public List<Vertex> getVertices() {
 		List<Vertex> vertices = new ArrayList<Vertex>();
 		vertices.add(new Vertex(0, 0));

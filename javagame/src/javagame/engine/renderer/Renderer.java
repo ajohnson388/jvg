@@ -10,13 +10,6 @@ public class Renderer implements RendererType {
 	@Override
 	public void render(Renderable renderable) {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-		renderRecursively(renderable);
-	}
-
-	private void renderRecursively(Renderable renderable) {
-		for (Renderable nextRenderable : renderable.getRenderables()) {
-			this.renderRecursively(nextRenderable);
-		}		
 		draw(renderable);
 	}
 

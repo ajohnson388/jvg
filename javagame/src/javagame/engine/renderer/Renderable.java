@@ -6,7 +6,6 @@ import javagame.model.Color;
 import javagame.model.Vertex;
 
 public interface Renderable {
-	public List<Renderable> getRenderables();
 	public List<Vertex> getVertices();
 	public Color getColor();
 }
